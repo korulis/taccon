@@ -7,7 +7,8 @@ Create Date: 2021-10-02 11:40:27.139442
 """
 from alembic import op
 import sqlalchemy as sa
-
+from sqlalchemy.dialects.postgresql import UUID, JSON
+import uuid
 
 # revision identifiers, used by Alembic.
 revision = '5af82f2dbe81'
@@ -17,8 +18,13 @@ depends_on = None
 
 
 def upgrade():
-    pass
+    op.create_table(
+        'moves',
+        sa.Column('id', sa.Integer, primary_key=True),
+        sa.Column('reference', UUID(as_uuid=True), unique=True, default=uuid.uuid4, nullable=False),
+        sa.Column('payload', JSON, nullable=False)
+    )
 
 
 def downgrade():
-    pass
+    op.drop_table('moves')
