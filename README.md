@@ -13,6 +13,10 @@ Backend for tic-tac-toe
 
 - Run webapi `python src/app.py`
 
+## Tests
+
+- `python -m unittest test/GameStateTests.py  -v`
+
 ## Database
 
 - If add migration: `alembic revision -m "my migration name"`
