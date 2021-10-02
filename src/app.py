@@ -10,9 +10,19 @@ CORS(app)
 
 migrator.migrate_up()
 
+
 @app.route("/status")
 def status():
     return jsonify({"status": "Ok!"})
+
+
+@app.route("/game-state")
+def game_state():
+    board = [None]*9
+    current_state = {"nextPlayer": "O",
+                     "winner": None, "stepNumber": 0, "board": board}
+    data = {"state": {"current": current_state, "history": [current_state]}}
+    return jsonify(data)
 
 
 if __name__ == "__main__":
