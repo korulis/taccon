@@ -6,7 +6,8 @@ import json
 from flask_cors import CORS
 from flask import Flask, request
 from flask.json import jsonify
-from game_state import get_initial_game_state, process_new_move_into_game_state
+from conf import conf
+
 
 
 app = Flask(__name__)
@@ -24,7 +25,7 @@ def status():
 @app.route("/game-state")
 def get_game_state():
     print("Getting game state...")
-    time.sleep(1)
+    time.sleep(conf.delay)
     a_game_state = game_state.get_current_game_state()
     print(json.dumps(a_game_state))
 
@@ -34,10 +35,10 @@ def get_game_state():
 @app.route("/game-state", methods=['POST'])
 def save_game_state():
     print("Saving game state...")
-    time.sleep(1)
+    time.sleep(conf.delay)
     request_data = request.get_json()
     newMove = request_data["move"]
-    result = process_new_move_into_game_state(newMove)
+    result = game_state.process_new_move_into_game_state(newMove)
 
     return jsonify(result)
 
