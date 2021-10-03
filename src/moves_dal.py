@@ -2,7 +2,7 @@ import json
 from typing import List
 import psycopg2
 
-from conf import conf
+from src.conf import conf
 
 
 def __get_connection():
@@ -62,6 +62,8 @@ def get_previous_moves(move) -> List:
             reference_to_check = (reference, reference)
             cursor.execute(__get_by_reference_query, reference_to_check)
             db_move = cursor.fetchone()
+            if db_move == None:
+                return []
             move = db_move["payload"]
             old_moves.insert(0, move)
             reference = db_move["previousMove"]

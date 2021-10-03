@@ -1,6 +1,6 @@
 import uuid
 import json
-import moves_dal
+import src.moves_dal as moves_dal
 
 
 def get_initial_move(board, nextPlayer):
@@ -28,7 +28,7 @@ def __get_game_state(previous_moves, new_move):
 
 
 def get_current_game_state():
-    latest_move = moves_dal.get_latest_move()
+    latest_move = moves_dal.v()
     previous_moves = moves_dal.get_previous_moves(latest_move)
     return __get_game_state(previous_moves, latest_move)
 
