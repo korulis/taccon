@@ -2,7 +2,7 @@ import json
 from typing import List
 import psycopg2
 
-from src.conf import conf
+from conf import conf
 
 
 def __get_connection():
