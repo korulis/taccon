@@ -44,6 +44,6 @@ def save_game_state():
 
 
 if __name__ == "__main__":
-    HOST = "localhost"
+    HOST = "0.0.0.0"
     PORT = 5000
     app.run(HOST, PORT)
