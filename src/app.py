@@ -32,8 +32,8 @@ def get_game_state():
     return jsonify(a_game_state)
 
 
-@app.route("/game-state", methods=['POST'])
-def save_game_state():
+@app.route("/move", methods=['POST'])
+def save_move():
     print("Saving game state...")
     time.sleep(conf.delay)
     request_data = request.get_json()
