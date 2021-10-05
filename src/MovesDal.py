@@ -98,6 +98,8 @@ class MovesDal():
 
             cursor.execute(self.__get_latest_query)
             db_move = cursor.fetchone()
+            if db_move == None:
+                return None
             move = db_move["payload"]
 
             print("Latest move fetched successfully.")

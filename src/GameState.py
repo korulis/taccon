@@ -20,6 +20,7 @@ class GameState:
 
     def new_initial_move(self):
         self._moves_dal.save(initial_move)
+        return initial_move
 
     def __get_game_state(self, previous_moves, new_move):
         previous_moves.append(new_move)
@@ -33,7 +34,7 @@ class GameState:
         previous_moves = self._moves_dal.get_previous_moves(latest_move)
         return self.__get_game_state(previous_moves, latest_move)
 
-    def process_new_move_into_game_state(self,new_move):
+    def process_new_move_into_game_state(self, new_move):
 
         print(json.dumps(new_move))
 
@@ -41,7 +42,10 @@ class GameState:
 
         if len(previous_moves) == 0:
             latest_move = self._moves_dal.get_latest_move()
-            new_move = latest_move
+            if latest_move == None:
+                new_move = self.new_initial_move()
+            else:
+                new_move = latest_move
             previous_moves = self._moves_dal.get_previous_moves(latest_move)
         else:
             self._moves_dal.save(new_move)
