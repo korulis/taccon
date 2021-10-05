@@ -31,6 +31,10 @@ class GameState:
 
     def get_current_game_state(self):
         latest_move = self._moves_dal.get_latest_move()
+        latest_move = self._moves_dal.get_latest_move()
+        if latest_move == None:
+            latest_move = self.new_initial_move()
+
         previous_moves = self._moves_dal.get_previous_moves(latest_move)
         return self.__get_game_state(previous_moves, latest_move)
 
