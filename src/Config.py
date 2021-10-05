@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 
-class conf:
+class Config:
     __env_path = os.getcwd() + "/.env"
     __env_path_local = os.getcwd() + "/.env.local"
     load_dotenv(dotenv_path=__env_path, override=True)
